@@ -6,15 +6,7 @@ using Connector = int;
 public class ConnectionsConstraint : IEnumerable
 {
     private const int CubeFaceCount = 6;
-    private List<Connector>[CubeFaceCount] connectors = new();
-    private enum Directions {
-        Up,
-        Down,
-        Left,
-        Right,
-        Front,
-        Back 
-    };
+    private List<Connector>[CubeFaceCount] connectors = new(); 
     
     public ConnectionsConstraint(List<Connector> up,
                                  List<Connector> down,
@@ -23,35 +15,35 @@ public class ConnectionsConstraint : IEnumerable
                                  List<Connector> front,
                                  List<Connector> back) {
         
-        connectors[Directions.Up]    = up;
-        connectors[Directions.Down]  = down;
-        connectors[Directions.Left]  = left;
-        connectors[Directions.Right] = right;
-        connectors[Directions.Front] = front;
-        connectors[Directions.Back]  = back;
+        connectors[Faces.Up]    = up;
+        connectors[Faces.Down]  = down;
+        connectors[Faces.Left]  = left;
+        connectors[Faces.Right] = right;
+        connectors[Faces.Front] = front;
+        connectors[Faces.Back]  = back;
     }
 
     public List<Connector> GetUp() {
-        return connectors[Directions.Up];
+        return connectors[Faces.Up];
     }
 
     public List<Connector> GetDown() {
-        return connectors[Directions.Down];
+        return connectors[Faces.Down];
     }
 
     public List<Connector> GetLeft() {
-        return connectors[Directions.Left];
+        return connectors[Faces.Left];
     }
 
     public List<Connector> GetRight() {
-        return connectors[Directions.Right];
+        return connectors[Faces.Right];
     }
 
     public List<Connector> GetFront() {
-        return connectors[Directions.Front];
+        return connectors[Faces.Front];
     }
 
     public List<Connector> GetBack() {
-        return connectors[Directions.Back];
+        return connectors[Faces.Back];
     }
 }
