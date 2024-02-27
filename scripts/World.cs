@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 
-// - zaimplementować class WaveFunctionCollapse : IGenerator
-
 class World {
     private Dictionary<Vector3, Tile> worldMap = new();
     private Dictionary<Vector2, int> floorMap = new();
     private Tile defaultTile;
-    private Vector3 cornerSWBottom;
-    private Vector3 cornerNETop;
+    
+    public Vector3 CornerSWBottom { get; set; }
+    public Vector3 CornerNETop { get; set; }
 
     public World(Tile defaultTile) {
         this.defaultTile = defaultTile;

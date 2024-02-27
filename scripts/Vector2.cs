@@ -1,4 +1,4 @@
 public record struct Vector2 {
-    private int x { get; set; }
-    private int y { get; set; }
+    public int X { get; set; }
+    public int Y { get; set; }
 }
