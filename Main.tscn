@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bq6g1qkn47swa"]
+
+[ext_resource type="MeshLibrary" uid="uid://cxivopp1e6kw7" path="res://Tileset.tres" id="1_x5771"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.894279, 0.221926, -0.388605, 1.49012e-08, 0.868372, 0.495913, 0.447509, -0.443485, 0.776567, -0.392633, 2.29594, 3.22893)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.839278, -0.0371789, 0.542429, -0.543702, -0.0573907, 0.837314, 1.49012e-08, -0.997659, -0.068381, 5.78652, 5.98598, -0.133946)
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("1_x5771")
