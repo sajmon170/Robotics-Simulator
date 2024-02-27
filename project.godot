@@ -10,15 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Gridmaps Demo"
-run/main_scene="res://GridMap_Demo.tscn"
-config/features=PackedStringArray("4.2", "C#")
-config/icon="res://icon.png"
+config/name="Robotics-Simulator"
+config/features=PackedStringArray("4.2", "Forward Plus")
+config/icon="res://icon.svg"
 
 [dotnet]
 
-project/assembly_name="Gridmaps Demo"
-
-[rendering]
-
-environment/default_environment="res://default_env.tres"
+project/assembly_name="Robotics-Simulator"
