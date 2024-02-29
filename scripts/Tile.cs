@@ -25,4 +25,11 @@ public class Tile {
     public List<Connector> Get(Face face) {
         return type.Connectors.Get(rot[(int)frontDirection, (int)face]);
     }
+
+    /*
+    public static Tile MakeRandom() {
+        return new Tile(Utility.GetRandom(tileset),
+                        Utility.GetRandom(Direction)));
+    }
+    */
 }

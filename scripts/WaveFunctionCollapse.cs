@@ -12,6 +12,11 @@ class WaveFunctionCollapse : IGenerator {
     Random  random   = new();
     Vector3 minBound = new();
     Vector3 maxBound = new();
+    Tileset tileset;
+
+    public WaveFunctionCollapse(Tileset tileset) {
+        this.tileset = tileset;
+    }
 
     private void generateBounds() {
         minBound = new Vector3() {
@@ -27,27 +32,37 @@ class WaveFunctionCollapse : IGenerator {
         };
     }
 
-    private void setInitialTiles(int number) {
-        HashSet<Vector3> usedTiles = new();
+    private void setInitialTiles(World world, int number) {
+        HashSet<Vector3> usedPositions = new();
 
-        while (usedTiles.Count != number) {
+        while (usedPositions.Count != number) {
             var pos = new Vector3() {
                 random.Next(minBound.X, maxBound.X),
                 random.Next(minBound.Y, maxBound.Y),
                 random.Next(minBound.Z, maxBound.Z)
             };
 
-            if (!usedTiles.Add(pos)) {
+            if (!usedPositions.Add(pos)) {
                 continue;
             }
 
-            
+
+            // Version 1
+            //world.SetTile(pos, new Tile(tileset.GetRandom()));
+
+            // Version 2
+            //
+            // world.SetTile(pos, new Tile(Utility.GetRandom(tileset)
+            //                             Utility.GetRandom(Direction)));
+
+            // Version 3
+            // world.SetTile(pos, Tile.MakeRandom());
         }
     }
     
     public void generate(World world) {
         generateBounds();
-        setInitialTiles(3);
+        setInitialTiles(world, 3);
         
         // List<Vector3> minEntropy;
 
