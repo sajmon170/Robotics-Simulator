@@ -9,54 +9,31 @@ using System.Collections.Generic;
 //         ^^^ Dictionary<Connector, List<TileType>>;
 
 class WaveFunctionCollapse : IGenerator {
-    Random  random   = new();
-    Vector3 minBound = new();
-    Vector3 maxBound = new();
-    Tileset tileset;
+    private Random  random   = new();
+    private Vector3 minBound = new();
+    private Vector3 maxBound = new();
+    private Tileset tileset;
 
     public WaveFunctionCollapse(Tileset tileset) {
         this.tileset = tileset;
     }
 
     private void generateBounds() {
-        minBound = new Vector3() {
-            X = random.Next(-20, -5),
-            Y = random.Next(-20, -5),
-            Z = random.Next(-20, -5)
-        };
-
-        maxBound = new Vector3() {
-            X = random.Next(5, 20),
-            Y = random.Next(5, 20),
-            Z = random.Next(5, 20)
-        };
+        maxBound = Vector3.MakeRandom(5, 20);
+        minBound = -maxBound;
     }
 
     private void setInitialTiles(World world, int number) {
         HashSet<Vector3> usedPositions = new();
 
         while (usedPositions.Count != number) {
-            var pos = new Vector3() {
-                random.Next(minBound.X, maxBound.X),
-                random.Next(minBound.Y, maxBound.Y),
-                random.Next(minBound.Z, maxBound.Z)
-            };
+            var pos = Vector3.MakeRandom(minBound, maxBound);
 
             if (!usedPositions.Add(pos)) {
                 continue;
             }
 
-
-            // Version 1
-            //world.SetTile(pos, new Tile(tileset.GetRandom()));
-
-            // Version 2
-            //
-            // world.SetTile(pos, new Tile(Utility.GetRandom(tileset)
-            //                             Utility.GetRandom(Direction)));
-
-            // Version 3
-            // world.SetTile(pos, Tile.MakeRandom());
+            world.SetTile(pos, tileset.MakeRandomTile());
         }
     }
     

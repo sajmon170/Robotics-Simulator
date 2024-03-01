@@ -6,8 +6,8 @@ class World {
     private Dictionary<Vector2, int> floorMap = new();
     private Tile defaultTile;
     
-    public Vector3 CornerSWBottom { get; }
-    public Vector3 CornerNETop { get; }
+    public Vector3 CornerSWBottom { get; private set; }
+    public Vector3 CornerNETop { get; private set; }
 
     public World(Tile defaultTile) {
         this.defaultTile = defaultTile;
@@ -20,14 +20,14 @@ class World {
     public void SetTile(Vector3 position, Tile tile) {
         worldMap.Add(position, tile);
         CornerSWBottom = new Vector3() {
-            Math.Min(position.X, CornerSWBottom.X),
-            Math.Min(position.Y, CornerSWBottom.Y),
-            Math.Min(position.Z, CornerSWBottom.Z)
+            X = Math.Min(position.X, CornerSWBottom.X),
+            Y = Math.Min(position.Y, CornerSWBottom.Y),
+            Z = Math.Min(position.Z, CornerSWBottom.Z)
         };
         CornerNETop = new Vector3() {
-            Math.Max(position.X, CornerNETop.X),
-            Math.Max(position.Y, CornerNETop.Y),
-            Math.Max(position.Z, CornerNETop.Z)
+            X = Math.Max(position.X, CornerNETop.X),
+            Y = Math.Max(position.Y, CornerNETop.Y),
+            Z = Math.Max(position.Z, CornerNETop.Z)
         };
     }
 }

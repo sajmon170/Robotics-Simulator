@@ -6,7 +6,7 @@ public record struct Vector2 : IEquatable<Vector2> {
 
     public bool Equals(Vector3 other) {
         return other.X == this.X
-            && other.Y == this.Y
+            && other.Y == this.Y;
     }
 
     public override int GetHashCode() {
