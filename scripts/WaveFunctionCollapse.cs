@@ -7,12 +7,14 @@ using System.Collections.Generic;
 //       - getRandom()
 //       - getMatching(int connector) -> List<TileType>
 //         ^^^ Dictionary<Connector, List<TileType>>;
+// styl: dodać consty
 
 class WaveFunctionCollapse : IGenerator {
-    private Random  random   = new();
+    private static Random random = new();
     private Vector3 minBound = new();
     private Vector3 maxBound = new();
     private Tileset tileset;
+    private Dictionary<Vector3, List<Tile>> domain = new();
 
     public WaveFunctionCollapse(Tileset tileset) {
         this.tileset = tileset;
@@ -36,10 +38,33 @@ class WaveFunctionCollapse : IGenerator {
             world.SetTile(pos, tileset.MakeRandomTile());
         }
     }
+
+    private void initializeDomain() {
+        // var rotations = GenerateRotations();
+
+        // Implementation using the waterfall design pattern:
+        // All rights reserved.
+        // for (x: x_axis)
+        //     for (y: y_axis)
+        //         for (z: z_axis)
+        //             for (tileType: tileset)
+        //                 for (direction: directions)
+        //                     domain.At(new Vector3() {X = x, Y = y, Z = z})
+        //                           .Add(new Tile(tileType, direction));
+
+        // Optimized: 
+        // List<Tile> rotatedTiles = tileset.RotateAll();
+        // for (tile: world)
+        //     domain.At(new Vector3() {X = x, Y = y, Z = z})
+        //           .Append(rotatedTiles); // WARNING: This appends references,
+        //                                              not new objects!
+    }
     
     public void generate(World world) {
+        World copy = new(world);
+        initializeDomain();
         generateBounds();
-        setInitialTiles(world, 3);
+        setInitialTiles(copy, 3);
         
         // List<Vector3> minEntropy;
 
@@ -47,6 +72,8 @@ class WaveFunctionCollapse : IGenerator {
         // 1. Pozyskać tile o najmniejszej entropii
         // 2. Wybrać tile i nadać mu wartość
         // 3. Propagować
+
+        world = copy;
     }
     
 }

@@ -4,13 +4,24 @@ using System;
 class World {
     private Dictionary<Vector3, Tile> worldMap = new();
     private Dictionary<Vector2, int> floorMap = new();
-    private Tile defaultTile;
+    private readonly Tile defaultTile;
     
     public Vector3 CornerSWBottom { get; private set; }
     public Vector3 CornerNETop { get; private set; }
 
     public World(Tile defaultTile) {
         this.defaultTile = defaultTile;
+    }
+
+    public World(World world) {
+        this.worldMap = new(world.worldMap);
+        this.floorMap = new(world.floorMap);
+        this.defaultTile = new(world.defaultTile);
+
+        // These statements are safe because Vector3 is a record struct,
+        // which gets copied automatically on assignment by the compiler.
+        this.CornerSWBottom = world.CornerSWBottom;
+        this.CornerNETop = world.CornerNETop;
     }
 
     public Tile GetTile(Vector3 position) {

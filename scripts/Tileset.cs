@@ -1,8 +1,9 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-class Tileset {
+class Tileset : IEnumerable<TileType> {
     private Dictionary<int, TileType> tiles;
     private static Random random = new();
     
@@ -22,5 +23,13 @@ class Tileset {
 
     public Tile MakeRandomTile() {
         return new Tile(GetRandomType(), Utility.RandomChoice<Direction>());
+    }
+
+    public IEnumerator<TileType> GetEnumerator() {
+        return tiles.Values.GetEnumerator();
+    }
+
+    IEnumerator IEnumerable.GetEnumerator() {
+        return tiles.Values.GetEnumerator();
     }
 }
