@@ -16,6 +16,10 @@ class Tileset : IEnumerable<TileType> {
         return tiles[id];
     }
 
+    public List<TileType> GetAll() {    
+        return tiles.Values.ToList();
+    }
+
     // This needs to be tested
     public TileType GetRandomType() {
         return tiles.ElementAt(random.Next(0, tiles.Count)).Value;

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Connector = int;
 
 public class Tile {
-    private TileType type;
+    public TileType Type { get; }
     private Direction frontDirection { get; set; }
     private static Face[,] rot = {
         // North
@@ -18,16 +18,16 @@ public class Tile {
     };
 
     public Tile(TileType type, Direction frontDirection = Direction.North) {
-        this.type = type;
+        this.Type = type;
         this.frontDirection = frontDirection;
     }
 
     public Tile(Tile tile) {
-        this.type = tile.type;
+        this.Type = tile.Type;
         this.frontDirection = tile.frontDirection;
     }
 
     public List<Connector> Get(Face face) {
-        return type.Connectors.Get(rot[(int)frontDirection, (int)face]);
+        return Type.Connectors.Get(rot[(int)frontDirection, (int)face]);
     }
 }

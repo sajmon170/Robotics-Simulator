@@ -1,3 +1,3 @@
 interface IGenerator {
-    public void generate(World world);
+    public void Generate(World world);
 }
